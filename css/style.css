@@ -241,3 +241,47 @@ body {
 	width: auto;
 	margin-right: 5px;
 }
+.box {
+	position: absolute;
+	top: -15%;
+	left: 0%;
+	transform: translate(-50%, -50%);
+  }
+  
+  .box select {
+	background: linear-gradient( #72EDF2, #5151E5);
+	background-color: #5151E5 ;
+	color: white;
+	padding: 12px;
+	width: 250px;
+	border: none;
+	font-size: 20px;
+	box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+	-webkit-appearance: button;
+	appearance: button;
+	outline: none;
+  }
+  
+  .box::before {
+	content: "\f13a";
+	font-family: FontAwesome;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 20%;
+	height: 100%;
+	text-align: center;
+	font-size: 28px;
+	line-height: 45px;
+	
+	pointer-events: none;
+  }
+  
+  .box:hover::before {
+	color: rgba(255, 255, 255, 0.6);
+	background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .box select option {
+	padding: 30px;
+  }
