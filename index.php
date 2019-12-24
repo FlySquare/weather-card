@@ -55,8 +55,15 @@ $dizri = explode ("<br />",$metin);
 
 
 <!-- partial:index.partial.html -->
-<div class="container">
-  <div class="weather-side">
+<div class="container"> 
+  <div style="
+  <?php if(strstr($dizri[1],"ağmur")) echo "background-image: url('https://s5.gifyu.com/images/b1e5c848634a3b97ca18bf2c6cabfb9960c308f6r1-497-370_hq-1.gif');"?>
+  <?php if(strstr($dizri[1],"ulut"))  echo "background-image: url('https://s5.gifyu.com/images/giphydea06a61393f5750.gif');"?>
+    <?php if(strstr($dizri[1],"kar"))  echo "background-image: url('https://s5.gifyu.com/images/gif-animc3a9-hivers-neige-33.gif');"?>
+      <?php if(strstr($dizri[1],"isli"))  echo "background-image: url('https://s5.gifyu.com/images/sis.gif');"?>
+        <?php if(strstr($dizri[1],"üneş"))  echo "background-image: url('https://s5.gifyu.com/images/source2a23f571fb5ddfe2.gif');"?>
+  
+  " class='weather-side'>
     <div class="weather-gradient"></div>
     <div class="date-container">
       <h2 class="date-dayname"><?php echo $dizi[1];?></h2><span class="date-day"><?php echo $dizi[0];?></span><i class="location-icon" data-feather="map-pin"></i><span class="location"><?php echo $ildizi[0]; ?></span>
