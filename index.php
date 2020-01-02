@@ -12,6 +12,12 @@ $site3 = file_get_contents("https://www.havadurumu.com.tr/havadurumu/$city-hava-
 preg_match_all('@<span class="report-C">(.*?)</span>@si', $site, $name);
 $namecikti = implode("p", $name[1]);
 $namedizi = explode ("p",$namecikti);
+
+preg_match_all('@<td style="text-align: left;">(.*?)</td>@si', $site3, $cal);
+$calcikti = implode("p", $cal[1]);
+$caldizi = explode ("p",$calcikti);
+
+
 preg_match_all('@<div class="right" style="text-align: center; width: 100px; padding: 5 10 10 10px;">(.*?)</div>@si', $site3, $status);
 $statuscikti = implode("p", $status[1]);
 $statusdizi = explode ("p",$statuscikti);
@@ -26,17 +32,24 @@ $dizi = explode (",",$timeuzun);
 preg_match_all('@<b>(.*?)</b>@si', $site, $nem);
 $nemcikti = implode("p", $nem[1]);
 $nemdizi = explode ("p",$nemcikti);
-preg_match_all('@<li class="weather15h">(.*?)</li>@si', $site, $day1);
+preg_match_all('@<div class="weather15h">(.*?)</div>@si', $site, $day1);
 $day1cikti = implode("p", $day1[1]);
 $day1dizi = explode ("p",$day1cikti);
-$metin = $day1dizi[0];
+
+$metin3 = $day1dizi[0];
+$day3 = explode (" ",$metin3);
+$metin = $day1dizi[4];
 $day1 = explode (" ",$metin);
-$day2 = explode (" ",$day1dizi[6]);
-$day3 = explode (" ",$day1dizi[12]);
+$metin2 = $day1dizi[8];
+$day2 = explode (" ",$metin2);
+
 
 $metin = $statusdizi[3];
 
 $dizri = explode ("<br />",$metin);
+
+$metincal = $calcikti;
+$caldizr = explode ("p",$metincal);
 
 ?>
 
@@ -107,9 +120,27 @@ $dizri = explode ("<br />",$metin);
     </div>
     <div class="week-container">
       <ul class="week-list">
-        <li class="active"><i class="day-icon" data-feather="sun"></i><span class="day-name"><?php echo $day1[2]?></span><span class="day-temp"><?php echo $namedizi[0]?></span></li>
-        <li><i class="day-icon" data-feather="cloud"></i><span class="day-name"><?php echo $day2[2]?></span><span class="day-temp"><?php echo $day1dizi[11]?></span></li>
-        <li><i class="day-icon" data-feather="cloud-snow"></i><span class="day-name"><?php echo $day3[2]?></span><span class="day-temp"><?php echo $day1dizi[17]?></span></li>
+        <li class="active">
+        <?php if(strstr($caldizr[0],"ağmur")) echo '<i class="fas fa-cloud-rain fa-2x"></i>'?>
+        <?php if(strstr($caldizr[0],"ulut")) echo '<i class="fas fa-cloud fa-2x"></i>'?>
+        <?php if(strstr($caldizr[0],"kar")) echo '<i class="far fa-snowflake fa-2x"></i>'?>
+        <?php if(strstr($caldizr[0],"isli")) echo '<i class="fas fa-smog fa-2x"></i>'?>
+        <?php if(strstr($caldizr[0],"üneş")) echo '<i class="fas fa-sun fa-2x"></i>'?>
+        <span class="day-name"><?php echo $day3[2] ?></span><span class="day-temp"><?php echo $day1dizi[3] ?></span></li>
+        <li>
+        <?php if(strstr($caldizr[1],"ağmur")) echo '<i class="fas fa-cloud-rain fa-2x"></i>'?>
+        <?php if(strstr($caldizr[1],"ulut")) echo '<i class="fas fa-cloud fa-2x"></i>'?>
+        <?php if(strstr($caldizr[1],"kar")) echo '<i class="far fa-snowflake fa-2x"></i>'?>
+        <?php if(strstr($caldizr[1],"isli")) echo '<i class="fas fa-smog fa-2x"></i>'?>
+        <?php if(strstr($caldizr[1],"üneş")) echo '<i class="fas fa-sun fa-2x"></i>'?></i>
+        <span class="day-name"><?php echo $day1[2] ?></span><span class="day-temp"><?php echo $day1dizi[7] ?></span></li>
+        <li>
+        <?php if(strstr($caldizr[2],"ağmur")) echo '<i class="fas fa-cloud-rain fa-2x"></i>'?>
+        <?php if(strstr($caldizr[2],"ulut")) echo '<i class="fas fa-cloud fa-2x"></i>'?>
+        <?php if(strstr($caldizr[2],"kar")) echo '<i class="far fa-snowflake fa-2x"></i>'?>
+        <?php if(strstr($caldizr[2],"isli")) echo '<i class="fas fa-smog fa-2x"></i>'?>
+        <?php if(strstr($caldizr[2],"üneş")) echo '<i class="fas fa-sun fa-2x"></i>'?></i>
+        <span class="day-name"><?php echo $day2[2] ?></span><span class="day-temp"><?php echo $day1dizi[11] ?></span></li>
         <div class="clear"></div>
       </ul>
     </div>
